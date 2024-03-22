@@ -17,6 +17,6 @@
 
 ## Collaborateurs
 * Samuel BRICONGNE
-* SOFIYA DEBOIS
+* Sofiya DEBOIS
 * Yassine SAHEB ETTABAA
 * Romaric HUBERT
