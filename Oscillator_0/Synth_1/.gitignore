@@ -1,5 +1,0 @@
-# Ignore JUCE generated files
-JuceLibraryCode/
-
-# Ignore build outputs
-Builds/
