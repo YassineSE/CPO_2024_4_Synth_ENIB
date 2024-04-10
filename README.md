@@ -4,19 +4,25 @@
 
 ### Diagrammes UML
 * Utiliser la branche `main`
-* Utiliser [Draw.io](https://apps.diagrams.net) pour tous les diagrammes
+* Utiliser [Draw.io](https://apps.diagrams.net) pour ouvrir tous les diagrammes
 
-### Code
-* Développer sur la broche main
-* Demander de faire un merge si tout fonctionne
+### Code 
+* Tout le code se trouve sur la branche main
 
-### Compte Rendu
-* Utiliser share-latex de l'enib
-* Lien du compte rendu: `à rajouter`
+### Exécution
+1. Télécharger la bibliothèque JUCE (optionnel): `https://github.com/juce-framework/JUCE.git`
+1. Les exécutables sont dans le Dossier: **EXEC**
+1. Les VST3 sont dans le Dossier **VST3**
+1. Sinon pour compiler le code
+ * Aller dans le dossier du projet: ex: `/Synth_1`
+ * Excécuter le code `./run.sh`
+1. Pour tester la VST3: Lancez **AudioPluginHost**
+### Extras
+1. Pour avoir l'`autocomplete` sur vscode, copiez le dossier `.vscode` s'il n'est pas présent.
+
 
 
 ## Collaborateurs
-* Samuel BRICONGNE
 * Sofiya DEBOIS
 * Yassine SAHEB ETTABAA
 * Romaric HUBERT
