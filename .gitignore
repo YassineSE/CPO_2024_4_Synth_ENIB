@@ -1,5 +1,5 @@
 
-Code/Synth_1/Builds
+Code/Synth_1/Builds/LinuxMakeFile/build/*
+Code/Synth_1/Builds/CodeBlocksLinux
 *.a
 *.o
-*/Builds
