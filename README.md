@@ -10,9 +10,7 @@
 * Tout le code se trouve sur la branche main
 
 ### Exécution
-1. Télécharger la bibliothèque JUCE (optionnel): `https://github.com/juce-framework/JUCE.git`
-1. Les exécutables sont dans le Dossier: **EXEC**
-1. Les VST3 sont dans le Dossier **VST3**
+1. Télécharger la bibliothèque JUCE (optionnel): `https://github.com/juce-framework/JUCE.git` (Normalement, le framework est dans le repo)
 1. Sinon pour compiler le code
  * Aller dans le dossier du projet: ex: `/Synth_1`
  * Excécuter le code `./run.sh`
