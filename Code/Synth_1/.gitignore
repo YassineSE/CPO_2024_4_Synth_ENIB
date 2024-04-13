@@ -1,4 +1,6 @@
-Builds/*
+Builds/LinuxMakefile/build/*
+Builds/CodeBlocksLinux/
+
 *.a
 *.o
 
