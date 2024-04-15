@@ -15,6 +15,12 @@
  * Aller dans le dossier du projet: ex: `/Synth_1`
  * Excécuter le code `./run.sh`
 1. Pour tester la VST3: Lancez **AudioPluginHost**
+### Test du plugin (si VST3)
+1. Après Avoir Téléchargé la bibliothèque JUCE, Compiler et Excécuter `JUCE/extras/AudioPluginHost`. Cela peut se faire avec cmake ou en copiant le script `run.sh` dans le même dossier.
+2. Ouvrir AudioPluginHost et ajouter le plugin (vst3) sur l'application
+3. R
+
+
 ### Extras
 1. Pour avoir l'`autocomplete` sur vscode, copiez le dossier `.vscode` s'il n'est pas présent.
 
