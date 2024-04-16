@@ -20,7 +20,7 @@
 ### Test du plugin de Synthétiseur (VST3)
 1. Après Avoir Téléchargé la bibliothèque JUCE, Compiler et Excécuter `JUCE/extras/AudioPluginHost`. Cela peut se faire avec cmake ou en copiant le script `run.sh` dans le même dossier.
 1. Ouvrir AudioPluginHost et ajouter le plugin (vst3) sur l'application: `Edit the list of available plugins` puis `Options/Scan for new updated VST3 Plugins`
-1. Relier le `Midi Input (internal)` aux 2 premières sorties audio (à gauche)
+1. Relier le `Midi Input (internal)` aux 2 premières entrées du Plugin puis aux 2 premières sorties audio (à gauche)
 
 
 ### Extras
