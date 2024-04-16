@@ -1,6 +1,3 @@
-Builds/LinuxMakefile/build/*
-Builds/CodeBlocksLinux/
-
-*.a
-*.o
+Builds/
+JuceLibraryCode/
 
