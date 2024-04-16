@@ -13,6 +13,7 @@
 1. Lancer le `Projucer` (inclus dans la bibliothèque JUCE: `JUCE/extras/Projuicer`) en copiant le script `run.sh` dans le dossier et en l'exécutant
 1. Ouvrir le fichier projucer du projet (ex: Synth_1.jucer)
 1. Clic-Droit sur le bouton `Linux Makefile` et appuyer sur `Save this exporter`
+1. Si les fichiers `Build` et `JuceLibraryCode` n'ont pas été créé, relancer le Projucer (`./Projucer`) et recommencer l'opération
 1. Noramelent dans le dossier maintenant existe les dossiers: `Build` et `JuceLibraryCode`
 1. Compiler le projet avec le script `run.sh`
    
