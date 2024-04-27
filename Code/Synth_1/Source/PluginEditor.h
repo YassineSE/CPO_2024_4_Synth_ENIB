@@ -23,6 +23,7 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+    void setSliderParams(juce::Slider& slider, juce::Label& label, juce::String text);
 
 private:
     // This reference is provided as a quick way for your editor to

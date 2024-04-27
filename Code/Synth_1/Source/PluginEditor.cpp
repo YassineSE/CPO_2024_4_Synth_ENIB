@@ -24,42 +24,13 @@ Synth_1AudioProcessorEditor::Synth_1AudioProcessorEditor (Synth_1AudioProcessor&
     releaseAttachment = std::make_unique<SliderAttachment>(audioProcessor.apvts, "RELEASE", releaseSlider);
     
     //MakeVisible
-    attackSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-    attackSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 30);
-    attackLabel.setText ("Attack", juce::dontSendNotification);
-    attackLabel.attachToComponent (&attackSlider, false);
-    attackLabel.setJustificationType(juce::Justification::centred);
+    //Attack
+    setSliderParams(attackSlider, attackLabel, "Attack");
+    setSliderParams(decaySlider, decayLabel, "Decay");
+    setSliderParams(sustainSlider, sustainLabel, "Sustain");
+    setSliderParams(releaseSlider, releaseLabel, "Release");
 
-    
-    decaySlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-    decaySlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 30);
-    decayLabel.setText ("Decay", juce::dontSendNotification);
-    decayLabel.attachToComponent (&decaySlider, false);
-    decayLabel.setJustificationType(juce::Justification::centred);
-    
-    sustainSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-    sustainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 30);
-    sustainLabel.setText ("Sustain", juce::dontSendNotification);
-    sustainLabel.attachToComponent (&sustainSlider, false);
-    sustainLabel.setJustificationType(juce::Justification::centred);
-    
-    releaseSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-    releaseSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 30);
-    releaseLabel.setText ("Release", juce::dontSendNotification);
-    releaseLabel.attachToComponent (&releaseSlider, false);
-    releaseLabel.setJustificationType(juce::Justification::centred);
-    
-    addAndMakeVisible(attackSlider);
-    addAndMakeVisible(decaySlider);
-    addAndMakeVisible(sustainSlider);
-    addAndMakeVisible(releaseSlider);
-
-    addAndMakeVisible (attackLabel);
-    addAndMakeVisible (attackLabel);
-    addAndMakeVisible (attackLabel);
-    addAndMakeVisible (attackLabel);
-
-    setSize (800, 300);
+    setSize (400, 300);
 }
 
 Synth_1AudioProcessorEditor::~Synth_1AudioProcessorEditor()
@@ -70,18 +41,42 @@ Synth_1AudioProcessorEditor::~Synth_1AudioProcessorEditor()
 void Synth_1AudioProcessorEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+    g.fillAll (juce::Colours::cadetblue);
 
-    g.setColour (juce::Colours::white);
-    g.setFont (20.0f);
-    g.drawFittedText ("Synth ENIB", getLocalBounds(), juce::Justification::centredTop, 1);
 }
 
 void Synth_1AudioProcessorEditor::resized()
-{
-    attackSlider.setBounds(getWidth()/4 + 100, getHeight()/2 - 50, 200, 100);
-    decaySlider.setBounds(getWidth()/4 + 200 ,getHeight()/2 - 50, 200, 100);
-    sustainSlider.setBounds(getWidth()/4 + 300, getHeight()/2 - 50, 200, 100);
-    releaseSlider.setBounds(getWidth()/4 + 400, getHeight()/2 - 50, 200, 100);
+{   
+    const auto bounds = getLocalBounds().reduced (10);
+    const auto padding = 10;
+    const auto sliderWidth = bounds.getWidth() / 4 - padding;
+    const auto sliderHeight = bounds.getHeight() / 2 - padding;
+    const auto sliderStartX = 0;
+    const auto sliderStartY = bounds.getHeight() / 2 - (sliderHeight / 2);
 
+    attackSlider.setBounds(sliderStartX, sliderStartY, sliderWidth, sliderHeight);
+    decaySlider.setBounds(attackSlider.getRight() + padding, sliderStartY, sliderWidth, sliderHeight);
+    sustainSlider.setBounds(decaySlider.getRight() + padding, sliderStartY, sliderWidth, sliderHeight);
+    releaseSlider.setBounds(sustainSlider.getRight() + padding, sliderStartY, sliderWidth, sliderHeight);
+    
+    
+
+
+}
+
+void Synth_1AudioProcessorEditor::setSliderParams(juce::Slider& slider, juce::Label& label, juce::String text)
+{
+    slider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    slider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 30);
+    slider.setColour(juce::Slider::textBoxTextColourId, juce::Colours::palegreen);
+    slider.setColour(juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
+    slider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::seagreen);
+    slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::seagreen); 
+    slider.setColour(juce::Slider::thumbColourId, juce::Colours::palegreen);
+    label.setText (text, juce::dontSendNotification);
+    label.attachToComponent (&slider, false);
+    label.setJustificationType(juce::Justification::centred);
+
+    addAndMakeVisible(slider);
+    addAndMakeVisible(label);
 }

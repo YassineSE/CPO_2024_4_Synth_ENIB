@@ -88,8 +88,9 @@ void SynthVoice::renderNextBlock (juce::AudioBuffer< float > &outputBuffer, int 
   gain.process(juce::dsp::ProcessContextReplacing<float> (audioBlock));
 
   //ADSR
-  adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
-
+  if (applyADSR){
+    adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
+  }
   // Add synth buffer to output Buffer
   for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel){
     outputBuffer.addFrom(channel, startSample, synthBuffer, channel,0, numSamples);
