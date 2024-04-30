@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio Version 17
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WhiteNoiseGeneratorPlugin - Standalone Plugin", "WhiteNoiseGeneratorPlugin_StandalonePlugin.vcxproj", "{01FC2D2D-F207-E922-8578-F7D1B2B41F33}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DEEA6E4-65CA-E46F-0E98-66C07F38CA45} = {1DEEA6E4-65CA-E46F-0E98-66C07F38CA45}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WhiteNoiseGeneratorPlugin - VST3", "WhiteNoiseGeneratorPlugin_VST3.vcxproj", "{DA630135-0F5B-444A-CB8F-7E5A7AF88893}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DEEA6E4-65CA-E46F-0E98-66C07F38CA45} = {1DEEA6E4-65CA-E46F-0E98-66C07F38CA45}
+		{369B8FCF-F6EA-3B71-7A1D-ADA2955126ED} = {369B8FCF-F6EA-3B71-7A1D-ADA2955126ED}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WhiteNoiseGeneratorPlugin - Shared Code", "WhiteNoiseGeneratorPlugin_SharedCode.vcxproj", "{1DEEA6E4-65CA-E46F-0E98-66C07F38CA45}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WhiteNoiseGeneratorPlugin - VST3 Manifest Helper", "WhiteNoiseGeneratorPlugin_VST3ManifestHelper.vcxproj", "{369B8FCF-F6EA-3B71-7A1D-ADA2955126ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA630135-0F5B-444A-CB8F-7E5A7AF88893}.Debug|x64.ActiveCfg = Debug|x64
+		{DA630135-0F5B-444A-CB8F-7E5A7AF88893}.Debug|x64.Build.0 = Debug|x64
+		{DA630135-0F5B-444A-CB8F-7E5A7AF88893}.Release|x64.ActiveCfg = Release|x64
+		{DA630135-0F5B-444A-CB8F-7E5A7AF88893}.Release|x64.Build.0 = Release|x64
+		{01FC2D2D-F207-E922-8578-F7D1B2B41F33}.Debug|x64.ActiveCfg = Debug|x64
+		{01FC2D2D-F207-E922-8578-F7D1B2B41F33}.Debug|x64.Build.0 = Debug|x64
+		{01FC2D2D-F207-E922-8578-F7D1B2B41F33}.Release|x64.ActiveCfg = Release|x64
+		{01FC2D2D-F207-E922-8578-F7D1B2B41F33}.Release|x64.Build.0 = Release|x64
+		{1DEEA6E4-65CA-E46F-0E98-66C07F38CA45}.Debug|x64.ActiveCfg = Debug|x64
+		{1DEEA6E4-65CA-E46F-0E98-66C07F38CA45}.Debug|x64.Build.0 = Debug|x64
+		{1DEEA6E4-65CA-E46F-0E98-66C07F38CA45}.Release|x64.ActiveCfg = Release|x64
+		{1DEEA6E4-65CA-E46F-0E98-66C07F38CA45}.Release|x64.Build.0 = Release|x64
+		{369B8FCF-F6EA-3B71-7A1D-ADA2955126ED}.Debug|x64.ActiveCfg = Debug|x64
+		{369B8FCF-F6EA-3B71-7A1D-ADA2955126ED}.Debug|x64.Build.0 = Debug|x64
+		{369B8FCF-F6EA-3B71-7A1D-ADA2955126ED}.Release|x64.ActiveCfg = Release|x64
+		{369B8FCF-F6EA-3B71-7A1D-ADA2955126ED}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
