@@ -1,0 +1,3 @@
+[submodule "Code/LowpassHighpassFilterPlugin"]
+	path = Code/LowpassHighpassFilterPlugin
+	url = https://github.com/Sofiya-D/LowpassHighpassFilterPlugin.git
