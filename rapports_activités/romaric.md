@@ -34,3 +34,8 @@
 ## Hors scéance: oui
 ## Durée: 7h
 * Début de la mise en commun pour afficher l'amplitude et le spectre d'un signal en temps réel dans un plugin Juice
+
+## Date: 13/05
+## Hors scéance: oui
+## Durée: 1h
+* Afficher le signal dans un plugin juice
