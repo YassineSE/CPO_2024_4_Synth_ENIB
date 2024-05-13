@@ -39,3 +39,8 @@
 ## Hors scéance: oui
 ## Durée: 1h
 * Afficher le signal dans un plugin juice
+
+## Date: 14/05
+## Hors scéance: oui
+## Durée: 45min
+* Diagramme PERT
