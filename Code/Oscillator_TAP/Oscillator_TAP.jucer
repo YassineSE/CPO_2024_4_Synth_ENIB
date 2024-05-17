@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="PK8vFt" name="Oscillator_TAP" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              pluginFormats="buildStandalone">
+              pluginFormats="buildStandalone,buildVST3" pluginCharacteristicsValue="pluginEditorRequiresKeys,pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="ky9T5o" name="Oscillator_TAP">
     <GROUP id="{49532043-2F92-AB33-91C3-BBDA480CBF54}" name="Source">
       <FILE id="VvpeVV" name="PluginProcessor.cpp" compile="1" resource="0"

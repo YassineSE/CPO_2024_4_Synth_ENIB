@@ -73,6 +73,7 @@ private:
     juce::dsp::Oscillator<float> oscSaw {[] (float x){ return x / juce::MathConstants<float>::pi; }, 200};
     juce::dsp::Oscillator<float> oscSquare {[](float x) { return x < 0.0f ? -1.0f : 1.0f; }, 200 };
     
+    juce::dsp::Oscillator<float> lfo {[] (float x) {return std::sin (x); }, 200};
     
     juce::dsp::Gain<float> gain;
 
