@@ -29,6 +29,7 @@ public:
     void setADSRSliderParams(juce::Slider& slider, juce::Label& label, juce::String text); 
     void waveTypeChanged();
     void verifyPlayStop();
+    void getLFOActivationState(juce::Button* Button);
 
 private:
     // This reference is provided as a quick way for your editor to
@@ -73,6 +74,8 @@ private:
     juce::Slider noteSlider;
     juce::Label noteLabel;
 
+
+    // ADSR Componants slider attachments
     using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
     
     std::unique_ptr<SliderAttachment> attackAttachment;
@@ -81,6 +84,15 @@ private:
     std::unique_ptr<SliderAttachment> releaseAttachment;
     std::unique_ptr<SliderAttachment> noteSliderAttachment;
 
+
+    // LFO + Slider Attachment
+    juce::Slider lfoSlider;
+    juce::Label lfoLabel; 
+    std::unique_ptr<SliderAttachment> lfoSliderAttachment;
+    
+    // LFO Activate Button 
+    juce::ToggleButton lfoActivateButton;
+    juce::Label lfoActivateLabel;
 
     //Timer
     void timerCallback() final{

@@ -63,6 +63,8 @@ public:
     juce::ADSR adsr;
     void updateADSR(const float attack, const float decay, const float sustain, const float release);
     bool applyADSR;
+    //LFO
+    bool applyLFO;
 
    
 

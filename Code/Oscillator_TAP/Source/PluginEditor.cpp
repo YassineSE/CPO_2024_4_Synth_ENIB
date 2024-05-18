@@ -12,7 +12,7 @@
 //==============================================================================
 Oscillator_TAPAudioProcessorEditor::Oscillator_TAPAudioProcessorEditor (Oscillator_TAPAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
-{
+{   
 
     //Play Button
     addAndMakeVisible (startButton);
@@ -90,7 +90,35 @@ Oscillator_TAPAudioProcessorEditor::Oscillator_TAPAudioProcessorEditor (Oscillat
     noteLabel.attachToComponent (&noteSlider, false);
     noteLabel.setJustificationType(juce::Justification::centredBottom);
 
-    setSize (400, 300);
+
+    // LFO SLIDER
+    addAndMakeVisible(lfoSlider);
+    addAndMakeVisible(lfoLabel);
+    lfoSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    lfoSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 30);
+    lfoSlider.setColour(juce::Slider::textBoxTextColourId, juce::Colours::palegreen);
+    lfoSlider.setColour(juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
+    lfoSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::darkred);
+    lfoSlider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::red); 
+    lfoSlider.setColour(juce::Slider::thumbColourId, juce::Colours::red);
+    lfoSlider.setTextValueSuffix(" Hz");
+    lfoLabel.setText ("LFO Frequency", juce::dontSendNotification);
+    lfoLabel.attachToComponent (&lfoSlider, false);
+    lfoLabel.setJustificationType(juce::Justification::centred);
+    //LFO ATTACHMENT
+    lfoSliderAttachment = std::make_unique<SliderAttachment>(audioProcessor.apvts, "LFO", lfoSlider);
+    
+    //LFO Activation
+    addAndMakeVisible(lfoActivateButton);
+    addAndMakeVisible(lfoActivateLabel);
+    lfoActivateButton  .onClick = [this] { getLFOActivationState (&lfoActivateButton);   };
+    lfoActivateLabel.setText ("Activate LFO", juce::dontSendNotification);
+    lfoActivateLabel.attachToComponent (&lfoActivateButton, true);
+    lfoActivateLabel.setJustificationType(juce::Justification::centred);
+
+
+
+    setSize (400, 900);
 }
 
 Oscillator_TAPAudioProcessorEditor::~Oscillator_TAPAudioProcessorEditor()
@@ -113,7 +141,7 @@ void Oscillator_TAPAudioProcessorEditor::resized()
     const auto bounds = getLocalBounds().reduced (10);
     const auto padding = 10;
     const auto sliderWidth = bounds.getWidth() / 4 - padding;
-    const auto sliderHeight = bounds.getHeight() / 2 - padding;
+    const auto sliderHeight = 140; //bounds.getHeight() / 2 - padding;
     const auto sliderStartX = 0;
     const auto sliderStartY = 3*padding;
     const auto adsrStartX = bounds.getWidth() / 3 + 3*padding;
@@ -131,7 +159,8 @@ void Oscillator_TAPAudioProcessorEditor::resized()
     decaySlider.setBounds(attackSlider.getRight() + padding, noteSlider.getBottom() + padding, adsrWidth, adsrHeight);
     sustainSlider.setBounds(attackSlider.getX(), attackSlider.getBottom() + 2*padding, adsrWidth, adsrHeight);
     releaseSlider.setBounds(sustainSlider.getRight() + padding, attackSlider.getBottom() + 2*padding, adsrWidth, adsrHeight);
-    
+    lfoSlider.setBounds(startButton.getX(), startButton.getBottom() + 4*padding, sliderWidth, sliderHeight-20);
+    lfoActivateButton.setBounds(lfoSlider.getX() + 6*padding, lfoSlider.getBottom() + 2*padding, 40,40);
 
 
 }
@@ -221,13 +250,18 @@ void Oscillator_TAPAudioProcessorEditor::verifyPlayStop()
 }
 
 
-// update Toggle State
+// update ADSR Toggle State
 void Oscillator_TAPAudioProcessorEditor::updateToggleState(juce::Button* Button)
 {
     auto state = Button->getToggleState();
-    juce::String stateString = state ? "ON" : "OFF";
-    juce::Logger::writeToLog (" ADSR Button changed to " + stateString);
     audioProcessor.applyADSR = state;
 
 }
 
+// update LFO Toggle State
+void Oscillator_TAPAudioProcessorEditor::getLFOActivationState(juce::Button* Button)
+{   
+    auto state = Button->getToggleState();
+    audioProcessor.applyLFO = state;
+
+}

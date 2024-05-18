@@ -107,6 +107,7 @@ void Oscillator_TAPAudioProcessor::prepareToPlay (double sampleRate, int samples
     oscSquare.prepare (spec);
     gain.prepare (spec);
     
+    lfo.prepare(spec);
 
 }
 
@@ -173,9 +174,7 @@ void Oscillator_TAPAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
         default:
             break;
         }
-        gain.setGainLinear (gainValue.load());
-        gain.process (juce::dsp::ProcessContextReplacing<float> (audioBlock));
-
+        
         if (applyADSR){    
             auto& attack = *apvts.getRawParameterValue("ATTACK");
             auto& decay = *apvts.getRawParameterValue("DECAY");
@@ -184,24 +183,20 @@ void Oscillator_TAPAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
             updateADSR(attack.load(), decay.load(), sustain.load(), release.load());
             //cout << "attack: " << attack.load() << "decay: " <<  decay.load() << "sustain: " << sustain.load() << "release: " << release.load() << endl;
             adsr.applyEnvelopeToBuffer(buffer, 0, buffer.getNumSamples());
-        }    
+
+        }
+        
+
+        gain.setGainLinear (gainValue.load());
+        gain.process (juce::dsp::ProcessContextReplacing<float> (audioBlock));
+
+        if (applyLFO){
+            auto& lfoFreq = *apvts.getRawParameterValue("LFO");
+            lfo.setFrequency(lfoFreq.load());
+            lfo.process(juce::dsp::ProcessContextReplacing<float> (audioBlock));
+        }
+
     }
-    
-    /*
-            for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-            {
-                for (auto numSample = 0; numSample < buffer.getNumSamples(); ++numSample)
-                {
-                    buffer.setSample(i, numSample, buffer.getSample(i, numSample) * adsr.getNextSample()); 
-                }
-            }
-    }
-    if (!adsr.isActive()){
-        playing = false;
-        applyADSR = false;
-    }
-    */
-    
 }
 
 //==============================================================================
@@ -237,11 +232,17 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 }
 
 //Parameters
-
+// This creates the global parameters controlled by the Juce Componants
 juce::AudioProcessorValueTreeState::ParameterLayout Oscillator_TAPAudioProcessor::createParameters()
-{
+{   
+    // Creating the Params Vector
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+
+    // Pushing the memory of each Parameters, the memory allocation happens in the PluginEditor.cpp
+
+    // Frequency of the Oscillator
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FREQ", "Frequency", juce::NormalisableRange<float>(20.0f, 20000.0f, 1.0f, 0.2f), 440.0f));
+    // Global Gain
     params.push_back(std::make_unique<juce::AudioParameterFloat>("GAIN", "Gain", juce::NormalisableRange<float>(0.0f, 1.0f, 0.01f, 0.2f), 0.1f));
 
     //Attack
@@ -254,6 +255,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout Oscillator_TAPAudioProcessor
     params.push_back(std::make_unique<juce::AudioParameterFloat>("RELEASE", "Release", juce::NormalisableRange<float> {0.1f, 3.0f, 0.1f}, 0.4f));
     //ADSR note duration
     params.push_back(std::make_unique<juce::AudioParameterFloat>("NOTE", "NoteDuration", juce::NormalisableRange<float> {0.1f, 3.0f, 0.1f}, 1.0f));
+    //LFO FREQUENCY
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("LFO", "Lfo", juce::NormalisableRange<float> {0.01f, 10.0f, 0.1f}, 3.0f));
 
     return {params.begin(), params.end()};
 }
